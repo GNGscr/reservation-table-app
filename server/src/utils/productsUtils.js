@@ -39,8 +39,8 @@ export const setStatus = (charge) =>
             throw new Error('Filter must be a string');
         }
 
-        if (nameFilter.match(/[^a-zA-Z\s]/)) {
-            throw new Error('Filter can only contain letters and spaces');
+        if (nameFilter.match(/[^a-zA-Z0-9\s%()’]/)) {
+            throw new Error("Filter can only contain letters, numbers, spaces, %, (, ), and ’");
         }
     
         const tlc = (str) => str.toLowerCase();
