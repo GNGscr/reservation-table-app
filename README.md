@@ -36,7 +36,7 @@ Reservation data is computed dynamically by combining two separate JSON sources 
 - 🟩🟥 **Color indicators**:
   - Active products = **green**
   - Cancelled/deleted = **red**
-- 🧱 **Sticky table headers** styled in gray for clarity.
+- 🧱 **Table headers** styled in gray for clarity.
 
 ---
 
