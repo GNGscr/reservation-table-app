@@ -63,7 +63,7 @@ All table-related logic is modular and split under:
 - **Express.js** (mock backend or middleware)
 - **Vite** (or CRA) for bundling
 - **LocalStorage** for theme preference
-- **CSS custom properties** (`:root`) and media queries
+- **CSS custom properties** (`:root`)
 
 ---
 
