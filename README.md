@@ -67,7 +67,6 @@ All table-related logic is modular and split under:
 
 ---
 
-## 📦 Installation & Usage
 
 
 
