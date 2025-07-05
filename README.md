@@ -1,7 +1,7 @@
 # 🧾 Reservation Table App
 
 A **TypeScript + React** application for displaying and managing reservation data using **Material UI (MUI)**.  
-Reservation data is computed dynamically by combining two separate JSON sources (e.g. product assignments and charges), and presented in a clean, responsive interface.
+Reservation data is computed dynamically by combining two separate JSON sources (e.g. product assignments and charges), and presented in a clean interface.
 
 ---
 
