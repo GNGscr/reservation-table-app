@@ -5,6 +5,12 @@ Reservation data is computed dynamically by combining two separate JSON sources 
 
 ---
 
+## 📸 Preview
+
+![Reservation Table App Preview](./public/images/screenshot.png)
+
+---
+
 ## 🚀 Features Overview
 
 ### 🔙 Backend Logic
