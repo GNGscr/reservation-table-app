@@ -100,4 +100,4 @@ npm run build
 
 ## 👨‍💻 Author
 
-  Built by Danie Ehrlich as side project.# reservation-table-app
+  Built by Daniel Ehrlich as side project.# reservation-table-app
