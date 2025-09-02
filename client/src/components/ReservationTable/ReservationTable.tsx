@@ -42,6 +42,7 @@ const ReservationTable = () => {
         setIsLoading(false);
         setReservations(res.data);
         setTotalPages(res.pages);
+        
         // Clear any previous error messages
         setErrorMessage('');
       } catch (err: unknown) {
@@ -57,23 +58,10 @@ const ReservationTable = () => {
 
   const loader = isLoading && (
     <>
-      <Typography
-        sx={{
-          mt: "15%",
-          ml: "37%",
-          zIndex: 4,
-          position: "absolute",
-          fontSize: "2rem",
-        }}
-      >
+      <Typography sx={{ mt: "15%", ml: "37%", position: "absolute", fontSize: "2rem" }}>
         Loading...
       </Typography>
-      <Skeleton
-        variant="text"
-        width="100%"
-        height="800px"
-        sx={{ mb: 2, mt: -22 }}
-      ></Skeleton>
+      <Skeleton variant="text" width="100%" height="800px" sx={{ mb: 2, mt: -22 }} />
     </>
   );
 
