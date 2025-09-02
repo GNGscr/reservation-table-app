@@ -4,6 +4,32 @@ import ReservationFilters from './ReservationFilters';
 import ProductsTable from './ProductsTable';
 import type { ReservationType, SortByType, SortOrderType, LimitType } from '../../types/ReservationTypes';
 
+const typographySx = {
+  mb: 2,
+  fontSize: "1.5rem",
+  position: "absolute",
+  top: "45%",
+  left: "50%",
+  transform: "translateX(-50%)",
+};
+const tableSxContainer = {
+  borderTopLeftRadius: "8px",
+  borderTopRightRadius: "8px",
+  overflowY: "scroll",
+  height: "67.5vh",
+  minWidth: "85vw",
+};
+const loaderSxContainer = {
+  borderTopLeftRadius: "8px",
+  borderTopRightRadius: "8px",
+  height: "67.5vh",
+  minWidth: "85vw",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  position: "relative",
+};
+
 const ReservationTable = () => {
   const [reservations, setReservations] = useState<ReservationType[]>([]);
   const [page, setPage] = useState(1);
@@ -36,15 +62,16 @@ const ReservationTable = () => {
         setIsLoading(true);
         const response = await fetch(`/api/products?${params.toString()}`);
         const res = await response.json();
+        setErrorMessage(!res.data.length && res.message ? res.message : '');
+
         if (!response.ok) {
         throw new Error(res.error || 'Failed to fetch');
         }
+      
         setIsLoading(false);
         setReservations(res.data);
         setTotalPages(res.pages);
         
-        // Clear any previous error messages
-        setErrorMessage('');
       } catch (err: unknown) {
         if (err instanceof Error) setErrorMessage(err.message);
         else setErrorMessage("An unknown error occurred while fetching reservations");
@@ -56,13 +83,19 @@ const ReservationTable = () => {
     fetchData();
   }, [page, limit, sortBy, sortOrder, debouncedFilterTerm]);
 
-  const loader = isLoading && (
-    <>
-      <Typography sx={{ mt: "14%", ml: "37.5%", position: "absolute", fontSize: "2rem" }}>
-        Loading...
-      </Typography>
-      <Skeleton variant="text" width="100%" height="800px" sx={{ mb: 2, mt: -22 }} />
-    </>
+  const loader = (
+    <TableContainer component={Paper} sx={loaderSxContainer}>
+      <div style={{ textAlign: "center", width: "100%" }}>
+        <Typography
+          color={errorMessage ? "error" : "textPrimary"}
+          variant="h6"
+          sx={typographySx}
+        >
+          {errorMessage || "Loading..."}
+        </Typography>
+        <Skeleton variant="rectangular" width="100%" height="100vh" />
+      </div>
+    </TableContainer>
   );
 
   return (
@@ -79,12 +112,6 @@ const ReservationTable = () => {
         setPage={setPage}
       />
 
-      {errorMessage && (
-        <Typography color="error" sx={{ m: 2 }}>
-          {errorMessage}
-        </Typography>
-      )}
-
       <Typography variant="h6" sx={{ m: 2 }} style={{ fontSize: "1.5rem" }}>
         Reservations
       </Typography>
@@ -92,15 +119,9 @@ const ReservationTable = () => {
       
       <TableContainer
         component={Paper}
-        sx={{
-          borderTopLeftRadius: "8px",
-          borderTopRightRadius: "8px",
-          overflowY: "scroll",
-          height: "67.5vh",
-          // Define a minimum width for the table on Error message
-          minWidth: "85vw",
-        }}
+        sx={tableSxContainer}
       >
+        {isLoading || errorMessage && (loader)}
         {isLoading && loader}
         <ProductsTable reservations={reservations} />
       </TableContainer>

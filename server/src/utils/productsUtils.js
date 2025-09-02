@@ -44,6 +44,9 @@ export const setStatus = (charge) =>
         }
     
         const tlc = (str) => str.toLowerCase();
+
+        // If no reservations, return empty array
+        if (reservations.length === 0) return [];
     
         return reservations
         .map((r) => ({
