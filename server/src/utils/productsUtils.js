@@ -4,7 +4,7 @@ export const setStatus = (charge) =>
   export const buildReservations = (assignments, charges) => {
     const reservations = {};
   
-    assignments.forEach(({ id, reservation_uuid, name }) => {
+    assignments?.forEach(({ id, reservation_uuid, name }) => {
       if (!reservations[reservation_uuid]) {
         reservations[reservation_uuid] = {
           reservation_uuid,

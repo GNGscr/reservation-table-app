@@ -1,0 +1,4 @@
+[
+    "https://reservations-table-bucket.s3.eu-north-1.amazonaws.com/product_assignment.json",
+    "https://reservations-table-bucket.s3.eu-north-1.amazonaws.com/product_charges.json"
+]

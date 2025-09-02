@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { TableContainer, Paper, Typography, Pagination } from '@mui/material';
+import { TableContainer, Paper, Typography, Pagination, Skeleton } from '@mui/material';
 import ReservationFilters from './ReservationFilters';
 import ProductsTable from './ProductsTable';
 import type { ReservationType, SortByType, SortOrderType, LimitType } from '../../types/ReservationTypes';
@@ -14,6 +14,7 @@ const ReservationTable = () => {
   const [filterTerm, setFilterTerm] = useState('');
   const [debouncedFilterTerm, setDebouncedFilterTerm] = useState(filterTerm);
   const [errorMessage, setErrorMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -32,12 +33,13 @@ const ReservationTable = () => {
         filter: debouncedFilterTerm,
       });
       try {
+        setIsLoading(true);
         const response = await fetch(`/api/products?${params.toString()}`);
         const res = await response.json();
         if (!response.ok) {
         throw new Error(res.error || 'Failed to fetch');
         }
-
+        setIsLoading(false);
         setReservations(res.data);
         setTotalPages(res.pages);
         // Clear any previous error messages
@@ -52,6 +54,28 @@ const ReservationTable = () => {
     };
     fetchData();
   }, [page, limit, sortBy, sortOrder, debouncedFilterTerm]);
+
+  const loader = isLoading && (
+    <>
+      <Typography
+        sx={{
+          mt: "15%",
+          ml: "37%",
+          zIndex: 4,
+          position: "absolute",
+          fontSize: "2rem",
+        }}
+      >
+        Loading...
+      </Typography>
+      <Skeleton
+        variant="text"
+        width="100%"
+        height="800px"
+        sx={{ mb: 2, mt: -22 }}
+      ></Skeleton>
+    </>
+  );
 
   return (
     <>
@@ -77,6 +101,7 @@ const ReservationTable = () => {
         Reservations
       </Typography>
 
+      {isLoading && loader}
       <TableContainer
         component={Paper}
         sx={{
@@ -85,7 +110,7 @@ const ReservationTable = () => {
           overflowY: "scroll",
           height: "67.5vh",
           // Define a minimum width for the table on Error message
-          minWidth: "90vw",
+          minWidth: "85vw",
         }}
       >
         <ProductsTable reservations={reservations} />
