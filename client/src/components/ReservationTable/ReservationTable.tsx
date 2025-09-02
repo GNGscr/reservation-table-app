@@ -58,7 +58,7 @@ const ReservationTable = () => {
 
   const loader = isLoading && (
     <>
-      <Typography sx={{ mt: "15%", ml: "37%", position: "absolute", fontSize: "2rem" }}>
+      <Typography sx={{ mt: "14%", ml: "37.5%", position: "absolute", fontSize: "2rem" }}>
         Loading...
       </Typography>
       <Skeleton variant="text" width="100%" height="800px" sx={{ mb: 2, mt: -22 }} />
@@ -89,7 +89,7 @@ const ReservationTable = () => {
         Reservations
       </Typography>
 
-      {isLoading && loader}
+      
       <TableContainer
         component={Paper}
         sx={{
@@ -101,6 +101,7 @@ const ReservationTable = () => {
           minWidth: "85vw",
         }}
       >
+        {isLoading && loader}
         <ProductsTable reservations={reservations} />
       </TableContainer>
 
