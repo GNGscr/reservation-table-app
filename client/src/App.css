@@ -85,19 +85,26 @@ td {
     gap: 1rem !important;
     margin-top: 2rem !important;
   }
+  .css-hk9b8p-MuiStack-root>:not(style)~:not(style) {
+    margin-left: 0 !important;
+  }
+  .css-j0riat-MuiSelect-nativeInput,
   .css-j0riat-MuiSelect-nativeInput {
     position: static !important;
   }
+  .css-d34j35-MuiNativeSelect-root-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-d34j35-MuiNativeSelect-root-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-d34j35-MuiNativeSelect-root-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input,
   .css-8jgc79-MuiNativeSelect-root-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-8jgc79-MuiNativeSelect-root-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-8jgc79-MuiNativeSelect-root-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
     margin-left: 0 !important;
     padding-right: 8.5rem !important;
   }
-  .css-hk9b8p-MuiStack-root>:not(style)~:not(style) {
-    margin-left: 0 !important;
-  }
+  .css-u53mum-MuiPaper-root-MuiTableContainer-root,
   .css-jc98rf-MuiPaper-root-MuiTableContainer-root {
     height: 50vh !important;
+    min-width: 80vw;
+    max-width: 82.5vw;
   }
+  .css-t8u0u-MuiTableCell-root,
+  .css-19gpm78-MuiTableCell-root,
   .css-38ope2-MuiTableCell-root {
     min-width: 0 !important;
   }
