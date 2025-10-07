@@ -104,4 +104,7 @@ td {
   .css-1c5o7vy-MuiPagination-ul {
     flex-wrap: nowrap !important;
   }
+  .css-f78p1j-MuiTypography-root {
+    top: 20% !important;
+  }
 }
