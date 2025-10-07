@@ -21,7 +21,15 @@ import {
     limit: LimitType;
     setLimit: (l: LimitType) => void;
     setPage: (p: number) => void;
-  }
+  };
+
+  const limitSizes = [10, 20, 50];
+  const menuItems = [
+    { id: 0, val: "", label: "All Products" },
+    { id: 1, val: "reservation_uuid", label: "Reservation UUID" },
+    { id: 2, val: "number_of_active_purchases", label: "# Purchases" },
+    { id: 3, val: "sum_of_active_charges", label: "Sum of Charges" }
+  ];
   
   const ReservationFilters = ({
     filterTerm,
@@ -64,12 +72,8 @@ import {
           <Select
             value={sortBy}
             label="Sort By"
-            onChange={(e) => setSortBy(e.target.value as SortByType)}
-          >
-            <MenuItem value="">All Products</MenuItem>
-            <MenuItem value="reservation_uuid">Reservation UUID</MenuItem>
-            <MenuItem value="number_of_active_purchases"># Purchases</MenuItem>
-            <MenuItem value="sum_of_active_charges">Sum of Charges</MenuItem>
+            onChange={(e) => setSortBy(e.target.value as SortByType)}>
+            {menuItems.map(({id, val, label}) => <MenuItem key={id} value={val}>{label}</MenuItem>)}
           </Select>
         </FormControl>
 
@@ -92,9 +96,9 @@ import {
             label="Limit"
             onChange={(e) => setLimit(e.target.value as LimitType)}
           >
-            <MenuItem value={10}>10</MenuItem>
-            <MenuItem value={20}>20</MenuItem>
-            <MenuItem value={50}>50</MenuItem>
+            {limitSizes.map(size => 
+              <MenuItem key={size} value={size}>{size}</MenuItem>
+            )}
           </Select>
         </FormControl>
       </Stack>
